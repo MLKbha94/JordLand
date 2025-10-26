@@ -19,14 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail = new PHPMailer(true);
 
     try {
-        // إعدادات SMTP الخاصة بـ cPanel
-        $mail->isSMTP();
-        $mail->Host       = 'mail.jordland.com';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'office@jordland.com';
-        $mail->Password   = 'M_1994.Lo';
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // SSL
-        $mail->Port       = 465;
+        // استخدام sendmail بدلاً من SMTP
+        $mail->isSendmail();
 
         // بيانات المرسل والمستقبل
         $mail->setFrom('office@jordland.com', 'JordLand Website');
@@ -45,12 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $mail->send();
         echo '✅ success';
-   } catch (Exception $e) {
-    echo "<pre style='color: #fff; background:#000; padding:10px;'>";
-    echo "❌ PHPMailer Error: " . $mail->ErrorInfo . "\n";
-    echo "❌ Exception: " . $e->getMessage() . "\n";
-    echo "</pre>";
-}
-
+    } catch (Exception $e) {
+        echo "❌ Error: " . $mail->ErrorInfo;
+    }
 }
 ?>
