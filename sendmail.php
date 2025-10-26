@@ -1,9 +1,7 @@
 <?php
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -11,7 +9,6 @@ use PHPMailer\PHPMailer\Exception;
 require 'PHPMailer-master/src/Exception.php';
 require 'PHPMailer-master/src/PHPMailer.php';
 require 'PHPMailer-master/src/SMTP.php';
-
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name    = trim($_POST['name']);
@@ -22,18 +19,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail = new PHPMailer(true);
 
     try {
-        // إعدادات SMTP الخاصة بـ GoDaddy
+        // إعدادات SMTP الخاصة بـ cPanel
         $mail->isSMTP();
-        $mail->Host       = 'smtpout.secureserver.net';
+        $mail->Host       = 'mail.jordland.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'office@jordland.com';   // إيميلك الرسمي
-        $mail->Password   = 'M_1994.Lo';    // كلمة المرور من GoDaddy بالضبط
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = 587;
+        $mail->Username   = 'office@jordland.com';
+        $mail->Password   = 'كلمة_المرور_الحقيقية_من_cPanel';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // SSL
+        $mail->Port       = 465;
 
-        // إعداد المرسل والمستقبل
+        // بيانات المرسل والمستقبل
         $mail->setFrom('office@jordland.com', 'JordLand Website');
-        $mail->addAddress('office@jordland.com'); // نفس الإيميل لتوصلك الرسائل
+        $mail->addAddress('office@jordland.com');
         $mail->addReplyTo($email, $name);
 
         // محتوى الرسالة
@@ -46,14 +43,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <b>الرسالة:</b><br>$message
         ";
 
-        // حاول الإرسال
-        if ($mail->send()) {
-            echo 'success';
-        } else {
-            echo 'error';
-        }
+        $mail->send();
+        echo '✅ success';
     } catch (Exception $e) {
-        echo 'error: ' . $mail->ErrorInfo;
+        echo "❌ Error: " . $mail->ErrorInfo;
     }
 }
 ?>
