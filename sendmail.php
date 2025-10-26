@@ -17,16 +17,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         // إعدادات SMTP الخاصة بـ GoDaddy
         $mail->isSMTP();
-        $mail->Host       = 'smtpout.secureserver.net'; 
+        $mail->Host       = 'smtpout.secureserver.net';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'info@jordland.com'; // ← حط بريدك الرسمي هون
-        $mail->Password   = 'كلمة_مرور_الإيميل'; // ← كلمة مرور الإيميل من GoDaddy
-        $mail->SMTPSecure = 'ssl';
-        $mail->Port       = 465;
+        $mail->Username   = 'office@jordland.com';       // بريدك الرسمي
+        $mail->Password   = 'M_1994.Lo';  // كلمة مرور الإيميل من GoDaddy
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // استخدم TLS
+        $mail->Port       = 587;
 
         // معلومات المرسل والمستقبل
-        $mail->setFrom('info@jordland.com', 'JordLand Website');
-        $mail->addAddress('info@jordland.com'); // البريد اللي توصله الرسائل
+        $mail->setFrom('office@jordland.com', 'JordLand Website');
+        $mail->addAddress('office@jordland.com'); // البريد اللي توصله الرسائل
         $mail->addReplyTo($email, $name);
 
         // محتوى الرسالة
@@ -39,10 +39,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <b>الرسالة:</b><br>$message
         ";
 
+        // للتصحيح المؤقت (اختياري)
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+
+        // إرسال الرسالة
         $mail->send();
         echo 'success';
     } catch (Exception $e) {
-        echo 'error';
+        echo 'error: ' . $mail->ErrorInfo;
     }
 }
 ?>
