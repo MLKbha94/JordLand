@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Host       = 'mail.jordland.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = 'office@jordland.com';
-        $mail->Password   = 'M.1994_Lo';
+        $mail->Password   = 'M_1994.Lo';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // SSL
         $mail->Port       = 465;
 
