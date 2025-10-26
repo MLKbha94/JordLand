@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JORDLAND Official Site</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/lang.js"></script>
+
 </head>
 
 <body>
+
+
 
     <!-- ===== HERO SECTION ===== -->
     <header class="hero">
@@ -23,6 +27,16 @@
             <button class="cta">ابــدأ رحـلـتــك</button>
         </div>
     </header>
+    <!-- ===========  lang  ========== -->
+
+
+    <div id="lang-switch">
+        <button onclick="setLanguage('ar')">🇸🇦 عربي</button>
+        <button onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+        <button onclick="setLanguage('en')">🇬🇧 English</button>
+    </div>
+
+    <!-- ===========  lang  ========== -->
 
 
     <!-- ===== ABOUT SECTION ===== -->
@@ -38,6 +52,8 @@
             والعمــلية في ألمــانيا. نحن هنا لدعــمكم في كل خطوة على الطريق.
         </p>
     </section>
+
+
 
     <!-- ===== SERVICES SECTION ===== -->
     <section id="services" class="services-section">
@@ -297,15 +313,38 @@
 
 
     <!-- ===== CONTACT SECTION ===== -->
-    <section class="contact">
-        <h2>تواصل معنا</h2>
-        <form>
-            <input type="text" placeholder="الاسم الكامل" required>
-            <input type="email" placeholder="البريد الإلكتروني" required>
-            <textarea placeholder="رسالتك..." required></textarea>
-            <button type="submit">إرسال</button>
+    <!-- ===== CONTACT SECTION ===== -->
+    <section class="contact" id="contact">
+        <h2 data-lang="contactTitle">تواصل معنا</h2>
+
+        <form id="contact-form" action="sendmail.php" method="POST">
+            <input type="text" name="name" placeholder="الاسم الكامل" required>
+            <input type="email" name="email" placeholder="البريد الإلكتروني" required>
+            <input type="tel" name="phone" placeholder="رقم الهاتف (اختياري)">
+            <textarea name="message" placeholder="اكتب رسالتك هنا..." required></textarea>
+            <button type="submit" id="send-btn">إرسال</button>
         </form>
+
+        <p id="form-status" style="margin-top:15px; color:#d4af37;"></p>
     </section>
+
+
+
+    <!-- ===== Nachrichten ===== -->
+
+
+    <section id="news-section">
+        <h2 data-lang="latestNews">آخر الأخبار</h2>
+        <div id="news-container">
+            <p>جاري تحميل الأخبار...</p>
+        </div>
+    </section>
+
+    <!-- ========== -->
+
+
+    <!-- ========== -->
+
 
     <!-- ===== FOOTER ===== -->
     <footer>
@@ -313,6 +352,8 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/lang.js"></script>
+
 </body>
 
 </html>

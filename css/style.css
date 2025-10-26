@@ -469,3 +469,44 @@ footer {
     border-bottom: 1px solid #d4af37;
     font-size: 1rem;
 }
+
+/* ===== NEWS SECTION ===== */
+
+
+
+
+
+#news-section {
+    padding: 40px;
+    text-align: center;
+    color: white;
+}
+
+.news-item {
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.news-item h3 {
+    color: #e6b800;
+}
+
+
+
+
+#form-status {
+    margin-top: 10px;
+    font-weight: 600;
+    color: #d4af37;
+    transition: all 0.3s ease;
+}
+
+#form-status.error {
+    color: #ff5555;
+}
+
+#form-status.success {
+    color: #00cc66;
+}

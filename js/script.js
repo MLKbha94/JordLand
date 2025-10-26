@@ -83,3 +83,61 @@ section.visible {
 }
 `;
 document.head.appendChild(style);
+
+
+
+// ===== Nachrichten =====
+
+
+async function loadNews() {
+  const container = document.getElementById('news-container');
+  try {
+    const response = await fetch('./data/news.json');
+    const news = await response.json();
+
+    container.innerHTML = '';
+
+    news.forEach(item => {
+      const div = document.createElement('div');
+      div.classList.add('news-item');
+      div.innerHTML = `
+        <h3>${item.title}</h3>
+        <p>${item.content}</p>
+        <small>${item.date}</small>
+        <hr>
+      `;
+      container.appendChild(div);
+    });
+  } catch (error) {
+    container.innerHTML = '<p>⚠️ حدث خطأ أثناء تحميل الأخبار.</p>';
+  }
+}
+
+const form = document.getElementById('contact-form');
+const status = document.getElementById('form-status');
+
+if (form) {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.textContent = '⏳ جارٍ الإرسال...';
+
+    try {
+      const formData = new FormData(form);
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await res.text();
+      if (result.trim() === "success") {
+        status.textContent = '✅ تم إرسال الرسالة بنجاح!';
+        form.reset();
+      } else {
+        status.textContent = '⚠️ حدث خطأ أثناء الإرسال.';
+      }
+    } catch (error) {
+      status.textContent = '❌ فشل الاتصال بالخادم.';
+    }
+  });
+}
+window.addEventListener('DOMContentLoaded', loadNews);
