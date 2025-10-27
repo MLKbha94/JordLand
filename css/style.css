@@ -817,3 +817,11 @@ footer {
     outline: none;
     border-color: #d4af37;
 }
+
+#weather-clock {
+    flex-direction: row-reverse;
+}
+
+#weather-clock {
+    gap: 10px;
+}
