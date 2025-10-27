@@ -1,40 +1,58 @@
-/* ============================================
-   JoLand v2 
-   ============================================ */
+/* =========================================================
+   ⚙️ JoLand v2 - Main JavaScript
+   Author: Mohammad Louay
+   ========================================================= */
 
-// ===== Smooth scroll for "ابدأ رحلتك"  =====
-document.querySelector('.cta').addEventListener('click', () => {
-  const contactSection = document.querySelector('.contact');
-  contactSection.scrollIntoView({ behavior: 'smooth' });
-});
 
-// ===== WhatsApp  =====
+/* =========================================================
+   🚀 [01] - Smooth Scroll for "ابدأ رحلتك"
+   ========================================================= */
+const ctaButton = document.querySelector('.cta');
+if (ctaButton) {
+  ctaButton.addEventListener('click', () => {
+    const contactSection = document.querySelector('.contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+}
+
+
+/* =========================================================
+   💬 [02] - WhatsApp Floating Button
+   ========================================================= */
+// إنشاء زر واتساب ثابت أسفل الصفحة
 const whatsappBtn = document.createElement('div');
 whatsappBtn.innerHTML = "💬";
 whatsappBtn.classList.add('whatsapp-btn');
 document.body.appendChild(whatsappBtn);
 
-// Click → open WhatsApp
+// عند النقر → فتح رابط واتساب
 whatsappBtn.addEventListener('click', () => {
-  window.open("https://wa.me/4912345678900", "_blank"); // TODO: Replace with your WhatsApp number
+  window.open("https://wa.me/4912345678900", "_blank"); // 🔧 عدّل الرقم هنا
 });
 
-// ===== Tabs for Universities Section =====
+
+/* =========================================================
+   🎛️ [03] - Universities Tabs
+   ========================================================= */
+// تحكم بعرض بطاقات الجامعات (مستقبلاً يمكن تفعيل الفلترة)
 const tabs = document.querySelectorAll('.tab');
 const uniCards = document.querySelectorAll('.uni-card');
 
 tabs.forEach(tab => {
   tab.addEventListener('click', () => {
-    // deactivate all tabs
     tabs.forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
-
-    // NOTE: here you can later filter the universities dynamically
-    // for now, it’s just a visual tab switch
+    // يمكن إضافة فلترة لاحقًا حسب الفئة
   });
 });
 
-// ===== Simple scroll reveal effect =====
+
+/* =========================================================
+   ✨ [04] - Scroll Reveal Animation
+   ========================================================= */
+// لإظهار العناصر أثناء التمرير تدريجيًا
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -47,7 +65,10 @@ document.querySelectorAll('section').forEach(section => {
   observer.observe(section);
 });
 
-// ===== WhatsApp Button Styling =====
+
+/* =========================================================
+   💚 [05] - WhatsApp Button Styling (Dynamic CSS)
+   ========================================================= */
 const style = document.createElement('style');
 style.innerHTML = `
 .whatsapp-btn {
@@ -85,10 +106,9 @@ section.visible {
 document.head.appendChild(style);
 
 
-
-// ===== Nachrichten =====
-
-
+/* =========================================================
+   📰 [06] - News Section (Load from JSON)
+   ========================================================= */
 async function loadNews() {
   const container = document.getElementById('news-container');
   try {
@@ -112,7 +132,12 @@ async function loadNews() {
     container.innerHTML = '<p>⚠️ حدث خطأ أثناء تحميل الأخبار.</p>';
   }
 }
+window.addEventListener('DOMContentLoaded', loadNews);
 
+
+/* =========================================================
+   📬 [07] - Contact Form Handler
+   ========================================================= */
 const form = document.getElementById('contact-form');
 const status = document.getElementById('form-status');
 
@@ -140,4 +165,3 @@ if (form) {
     }
   });
 }
-window.addEventListener('DOMContentLoaded', loadNews);

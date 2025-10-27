@@ -6,314 +6,249 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JORDLAND Official Site</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="js/lang.js"></script>
-
 </head>
 
 <body>
 
-
-
-    <!-- ===== HERO SECTION ===== -->
+    <!-- ==================================================== -->
+    <!-- 🌍 [01] HERO SECTION + JOURNEY MAP -->
+    <!-- ==================================================== -->
     <header class="hero">
         <div class="overlay"></div>
+
         <div class="hero-content">
-            <h1>JORDLAND </h1>
-            <h1> <span>جــــــــوردلَنـــــــد </span></h1>
+            <h1>JORDLAND</h1>
+            <h1><span>جــــــــوردلَنـــــــد</span></h1>
             <p>من الشباب للشباب طريقك من الأردن إلى ألمانيا</p>
-            <p> Ihr Weg von Jordanien nach Deutschland</p>
-            <p> Your journey from Jordan to Germany</p>
+            <p>Ihr Weg von Jordanien nach Deutschland</p>
+            <p>Your journey from Jordan to Germany</p>
 
             <button class="cta">ابــدأ رحـلـتــك</button>
+
+            <!-- 🔥 خريطة الرحلة داخل الهيدر -->
+            <div class="journey-graphic">
+                <svg class="journey-svg" viewBox="0 0 1600 300" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="goldGradient" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#caa63f" stop-opacity="0.2" />
+                            <stop offset="40%" stop-color="#d4af37" stop-opacity="0.8" />
+                            <stop offset="100%" stop-color="#ffdf70" />
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="blur" />
+                            <feMerge>
+                                <feMergeNode in="blur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    <!-- ✨ المسار الذهبي -->
+                    <path d="M100,180 
+                            C400,80 800,100 1100,200
+                            S1500,250 1500,150" fill="none" stroke="url(#goldGradient)" stroke-width="4"
+                        stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)" stroke-dasharray="6,12">
+                        <animate attributeName="stroke-dashoffset" from="0" to="-30" dur="2s"
+                            repeatCount="indefinite" />
+                    </path>
+                </svg>
+
+                <!-- 🌍 الأيقونات -->
+                <div class="flag flag-jordan" data-tip="الأردن 🇯🇴">🇯🇴</div>
+                <div class="node-icon" data-lucide="file-signature" style="--x:14%;--y:60%;" data-tip="السيرة الذاتية">
+                </div>
+                <div class="node-icon" data-lucide="home" style="--x:30%;--y:68%;" data-tip="تأمين السكن"></div>
+                <div class="node-icon" data-lucide="handshake" style="--x:50%;--y:45%;" data-tip="الاستقبال والمرافقة">
+                </div>
+                <div class="node-icon" data-lucide="plane" style="--x:70%;--y:30%;" data-tip="الطيران والتأمين"></div>
+                <div class="node-icon" data-lucide="file-text" style="--x:85%;--y:50%;" data-tip="ترتيب الإجراءات">
+                </div>
+                <div class="flag flag-germany" data-tip="ألمانيا 🇩🇪">🇩🇪</div>
+            </div>
         </div>
     </header>
-    <!-- ===========  lang  ========== -->
 
-
+    <!-- ==================================================== -->
+    <!-- 🌐 [02] LANGUAGE SWITCH -->
+    <!-- ==================================================== -->
     <div id="lang-switch">
         <button onclick="setLanguage('ar')">🇸🇦 عربي</button>
         <button onclick="setLanguage('de')">🇩🇪 Deutsch</button>
         <button onclick="setLanguage('en')">🇬🇧 English</button>
     </div>
 
-    <!-- ===========  lang  ========== -->
-
-
-    <!-- ===== ABOUT SECTION ===== -->
-    <section class="about">
-        <h2>من الأردن إلى ألمانيا</h2>
-        <!-- Placeholder map background -->
-        <div class="map-placeholder">
-            <!-- TODO: Replace with interactive SVG map later -->
-            <p>خريطة رمزية للطريق الذهبي بين الأردن وألمانيا</p>
-        </div>
-        <p class="about-text">
-            جــوردلنــد هي جــمعيــة غير ربحــية تهــدف إلى مســاعدة الشــباب الأردني في تحقيق أحــلامهم الدراســية
-            والعمــلية في ألمــانيا. نحن هنا لدعــمكم في كل خطوة على الطريق.
-        </p>
-    </section>
-
-
-
-    <!-- ===== SERVICES SECTION ===== -->
+    <!-- ==================================================== -->
+    <!-- 🛠️ [03] SERVICES SECTION -->
+    <!-- ==================================================== -->
     <section id="services" class="services-section">
-        <h2 class="section-title">خــدمــات جــوردلنــد</h2>
+        <h2 class="section-title">خــدمــات جــوردلــنــد</h2>
 
         <div class="services-container">
 
-            <!-- الخدمة 1 -->
             <div class="service-card">
-                <div class="icon">🎓</div>
+                <div class="icon" data-lucide="graduation-cap"></div>
                 <h3>القبولات الجامعية</h3>
-                <p>نساعدك في الحصول على قبول لغة، بكالوريوس، ماستر، أو قبول مشروط باللغة حسب حالتك الأكاديمية.</p>
-                <a href="service-admission.html" class="read-more">اعرف المزيد</a>
+                <p>نساعدك في الحصول على قبول لغة، بكالوريوس، ماستر، أو قبول مشروط حسب حالتك.</p>
+                <a href="htmlUL/service-admission.html" class="read-more">اعرف المزيد</a>
             </div>
 
-            <!-- الخدمة 2 -->
             <div class="service-card">
-                <div class="icon">🛠️</div>
+                <div class="icon" data-lucide="wrench"></div>
                 <h3>التدريب المهني وعقود العمل</h3>
                 <p>نوفر فرص تدريب مهني وعقود عمل حقيقية حصراً لمن تنطبق عليهم الشروط المطلوبة.</p>
-                <a href="service-training.html" class="read-more">اعرف المزيد</a>
+                <a href="htmlUL/service-training.html" class="read-more">اعرف المزيد</a>
             </div>
 
-            <!-- الخدمة 3 -->
             <div class="service-card">
-                <div class="icon">🧾</div>
-                <h3>ترتيب إجراءات السفارة الألمانية في عمّان</h3>
-                <p>نرتب لك المواعيد والأوراق المطلوبة للسفارة الألمانية في عمّان خطوة بخطوة لتسهيل العملية.</p>
-                <a href="service-embassy.html" class="read-more">اعرف المزيد</a>
+                <div class="icon" data-lucide="file-text"></div>
+                <h3>إجراءات السفارة الألمانية</h3>
+                <p>نرتب لك المواعيد والأوراق المطلوبة للسفارة الألمانية في عمّان خطوة بخطوة.</p>
+                <a href="htmlUL/service-embassy.html" class="read-more">اعرف المزيد</a>
             </div>
 
-            <!-- الخدمة 4 -->
             <div class="service-card">
-                <div class="icon">✈️</div>
+                <div class="icon" data-lucide="plane"></div>
                 <h3>التأمين و التذاكر</h3>
-                <p>نجهز لك التأمين المناسب للسفر والإقامة، ونساعدك في حجز التذاكر بطرق آمنة ومضمونة.</p>
-                <a href="service-insurance.html" class="read-more">اعرف المزيد</a>
+                <p>نجهز لك التأمين المناسب للسفر والإقامة، ونساعدك في حجز التذاكر بطرق آمنة.</p>
+                <a href="htmlUL/service-insurance.html" class="read-more">اعرف المزيد</a>
             </div>
 
-            <!-- الخدمة 5 -->
             <div class="service-card">
-                <div class="icon">🤝</div>
+                <div class="icon" data-lucide="handshake"></div>
                 <h3>الاستقبال والمرافقة</h3>
-                <p>استقبال القادمين في المطار ومرافقتهم لمكان السكن مع تقديم الدعم في أول يوم.</p>
-                <a href="service-arrival.html" class="read-more">اعرف المزيد</a>
+                <p>استقبال القادمين في المطار ومرافقتهم للسكن مع الدعم في أول يوم.</p>
+                <a href="htmlUL/service-arrival.html" class="read-more">اعرف المزيد</a>
             </div>
 
-            <!-- الخدمة 6 -->
             <div class="service-card">
-                <div class="icon">🏠</div>
+                <div class="icon" data-lucide="home"></div>
                 <h3>تأمين السكن المناسب</h3>
-                <p>نساعدك في إيجاد سكن ملائم سواء في寮 الطلاب أو شقة مشتركة بأسعار مناسبة.</p>
-                <a href="service-housing.html" class="read-more">اعرف المزيد</a>
+                <p>نساعدك في إيجاد سكن ملائم سواء寮 الطلاب أو شقة مشتركة بأسعار مناسبة.</p>
+                <a href="htmlUL/service-housing.html" class="read-more">اعرف المزيد</a>
             </div>
 
-            <!-- الخدمة 7 -->
             <div class="service-card">
-                <div class="icon">📄</div>
-                <h3>تجهيز السيرة الذاتية و التقديم للعمل</h3>
-                <p>نعدّ لك سيرة ذاتية احترافية بالصيغة الألمانية للتقديم على الوظائف أو التدريب.</p>
-                <a href="service-cv.html" class="read-more">اعرف المزيد</a>
-            </div>
-        </div>
-
-        <h3 class="section-subtitle">الخدمات القادمة قريبًا</h3>
-
-        <div class="services-container upcoming">
-            <!-- خدمة مستقبلية 1 -->
-            <div class="service-card future">
-                <div class="icon">👨‍🏫</div>
-                <h3>مدرّس خصوصي للراغبين</h3>
-                <p>إمكانية التعاقد مع مدرسين خصوصيين لتقوية اللغة الألمانية أو التحضير للامتحانات.</p>
-            </div>
-
-            <!-- خدمة مستقبلية 2 -->
-            <div class="service-card future">
-                <div class="icon">💻</div>
-                <h3>دورات لغة أونلاين</h3>
-                <p>التسجيل في دورات لغة ألمانية أونلاين بإشراف مدربين معتمدين.</p>
-            </div>
-
-            <!-- خدمة مستقبلية 3 -->
-            <div class="service-card future">
-                <div class="icon">🚚</div>
-                <h3>تصدير واستيراد المنتجات الألمانية</h3>
-                <p>توفير وإرسال منتجات ألمانية أصلية مختارة حصريًا للراغبين من الأردن.</p>
+                <div class="icon" data-lucide="file-signature"></div>
+                <h3>تجهيز السيرة الذاتية</h3>
+                <p>نعدّ لك سيرة ذاتية احترافية للتقديم على الوظائف أو التدريب.</p>
+                <a href="htmlUL/service-cv.html" class="read-more">اعرف المزيد</a>
             </div>
         </div>
     </section>
 
-
-    <!-- ===== CITIES SECTION ===== -->
-    <!-- ===== CITIES SECTION ===== -->
+    <!-- ==================================================== -->
+    <!-- 🏙️ [04] CITIES SECTION -->
+    <!-- ==================================================== -->
     <section id="cities" class="cities-section">
         <h2 class="section-title">مدن ألمانية تستحق المعرفة</h2>
 
         <div class="cities-container">
-            <!-- المدينة 1 -->
+
             <div class="city-card">
-                <img src="images/berlin.jpg" alt="برلين">
+                <img src="/images/berlin.png" alt="برلين">
                 <h3>برلين</h3>
-                <p>عاصمة ألمانيا، مليئة بالفرص الجامعية والثقافية، وتُعد وجهة مفضلة للطلاب الدوليين.</p>
-                <a href="city-berlin.html" class="read-more">اعرف المزيد</a>
+                <p>عاصمة ألمانيا ومركز للفرص الجامعية والثقافية.</p>
+                <a href="htmlUL/city-berlin.html" class="read-more">اعرف المزيد</a>
             </div>
 
-            <!-- المدينة 2 -->
             <div class="city-card">
-                <img src="images/munich.jpg" alt="ميونخ">
+                <img src="/images/münchen.png" alt="ميونخ">
                 <h3>ميونخ</h3>
-                <p>مدينة التكنولوجيا والابتكار، موطن لجامعة ميونخ التقنية وأجواء بافارية فريدة.</p>
-                <a href="city-munich.html" class="read-more">اعرف المزيد</a>
+                <p>مدينة التكنولوجيا والابتكار، موطن جامعة ميونخ التقنية.</p>
+                <a href="htmlUL/city-berlin.html" class="read-more">اعرف المزيد</a>
             </div>
 
-            <!-- المدينة 3 -->
             <div class="city-card">
-                <img src="images/dusseldorf.jpg" alt="دوسلدورف">
+                <img src="/images/dusseldorf.png" alt="دوسلدورف">
                 <h3>دوسلدورف</h3>
-                <p>مدينة المال والأزياء، تجمع بين الحداثة والجمال الهادئ على ضفاف نهر الراين.</p>
-                <a href="city-dusseldorf.html" class="read-more">اعرف المزيد</a>
+                <p>مدينة المال والأزياء والجمال الهادئ على ضفاف الراين.</p>
+                <a href="htmlUL/city-berlin.html" class="read-more">اعرف المزيد</a>
             </div>
 
-            <!-- المدينة 4 -->
             <div class="city-card">
-                <img src="images/hamburg.jpg" alt="هامبورغ">
+                <img src="/images/hamburg.png" alt="هامبورغ">
                 <h3>هامبورغ</h3>
-                <p>مدينة الموانئ والثقافة، فيها حياة طلابية نشطة ومشهد فني رائع.</p>
-                <a href="city-hamburg.html" class="read-more">اعرف المزيد</a>
+                <p>مدينة الموانئ والثقافة والفن.</p>
+                <a href="htmlUL/city-berlin.html" class="read-more">اعرف المزيد</a>
             </div>
-        </div>
 
-        <!-- <div class="more-cities">
-        <a href="cities.html" class="see-all">عرض جميع المدن</a>
-    </div> -->
+        </div>
     </section>
 
-    <!-- ===== 1st Article ===== -->
 
-
-    <!-- قسم المقالات -->
+    <!-- ==================================================== -->
+    <!-- 📰 [05] ARTICLES SECTION -->
+    <!-- ==================================================== -->
     <section id="articles" class="articles-section">
         <h2 class="section-title">مقالات من جــوردلنــد</h2>
 
         <div class="articles-container">
-            <!-- المقال 1 -->
             <article class="article-card">
-                <img src="images/article1.jpg" alt="عنوان المقال 1">
+                <div class="icon" data-lucide="graduation-cap"></div>
                 <h3>الخطوة الأولى نحو الدراسة في ألمانيا</h3>
                 <p>دليلك الكامل من تجهيز الأوراق إلى أول يوم في الجامعة...</p>
-                <a href="article1.html" class="read-more">اقرأ المزيد</a>
+                <a href="htmlUL/article1.html" class="read-more">اعرف المزيد</a>
+
             </article>
 
-            <!-- المقال 2 -->
             <article class="article-card">
-                <img src="images/article2.jpg" alt="عنوان المقال 2">
+                <div class="icon" data-lucide="plane"></div>
                 <h3>أهم النصائح قبل السفر إلى ألمانيا</h3>
-                <p>تعرف على أسرار التوفير، الإقامة، وكيف تبدأ حياتك بثقة...</p>
-                <a href="article2.html" class="read-more">اقرأ المزيد</a>
+                <p>تعرف على أسرار التوفير والإقامة والبداية بثقة...</p>
+                <a href="htmlUL/article2.html" class="read-more">اعرف المزيد</a>
+
             </article>
 
-            <!-- المقال 3 -->
             <article class="article-card">
-                <img src="images/article3.jpg" alt="عنوان المقال 3">
-                <h3>كيف تختار تخصصك الجامعي في ألمانيا</h3>
+                <div class="icon" data-lucide="book-open-text"></div>
+                <h3>كيف تختار تخصصك الجامعي</h3>
                 <p>خطوات عملية لاختيار التخصص الأنسب لقدراتك وطموحك...</p>
-                <a href="article3.html" class="read-more">اقرأ المزيد</a>
+                <a href="htmlUL/article3.html" class="read-more">اعرف المزيد</a>
+
             </article>
 
-            <!-- المقال 4 -->
             <article class="article-card">
-                <img src="images/article4.jpg" alt="عنوان المقال 4">
-                <h3>الحياة الطلابية في المدن الألمانية</h3>
+                <div class="icon" data-lucide="school"></div>
+                <h3>الحياة الطلابية في ألمانيا</h3>
                 <p>نظرة على تجربة الطلاب الأردنيين في برلين ودوسلدورف وميونخ...</p>
-                <a href="article4.html" class="read-more">اقرأ المزيد</a>
-            </article>
-        </div>
+                <a href="htmlUL/article4.html" class="read-more">اعرف المزيد</a>
 
-        <div class="more-articles">
-            <a href="articles.html" class="see-all">عرض جميع المقالات</a>
+            </article>
         </div>
     </section>
 
-
-
-
-
-    <!-- ===== Article ===== -->
-
-
-    <!-- ===== UNIVERSITIES SECTION maybe show up later ===== -->
-    <!-- <section class="universities">
-        <h2>Choose Your Major</h2>
-        <div class="tabs">
-            <button class="tab active">اللغة</button>
-            <button class="tab">بكالوريوس</button>
-            <button class="tab">ماجستير</button>
-        </div>
-        <div class="uni-grid">
-            <div class="uni-card">🏫 <h3>German Language Course</h3>
-                <p>Intensive A1–C1 language programs.</p>
-            </div>
-            <div class="uni-card">🎓 <h3>Engineering</h3>
-                <p>Top universities offering English-track Bachelor programs.</p>
-            </div>
-            <div class="uni-card">💡 <h3>Master Studies</h3>
-                <p>Join innovative Master programs in Germany.</p>
-            </div>
-        </div>
-    </section> -->
-
-    <!-- ===== BLOG SECTION ===== -->
-    <!-- ===== BLOG SECTION ===== -->
+    <!-- ==================================================== -->
+    <!-- ✈️ [06] BLOG SECTION -->
+    <!-- ==================================================== -->
     <section id="blog" class="blog-section">
         <h2 class="section-title">تــجــارب شـبــاب جــوردلـنــد</h2>
 
         <div class="blog-container">
-            <!-- المقال / القصة 1 -->
             <article class="blog-card">
-                <img src="https://images.unsplash.com/photo-1531219432768-dc2c6e9b7d4a?auto=format&fit=crop&w=800&q=60"
+                <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=800&q=80"
                     alt="كيف تبدأ رحلتك الدراسية في ألمانيا؟">
                 <h3>كيف تبدأ رحلتك الدراسية في ألمانيا؟</h3>
                 <p>خطوات أولى ونصائح واقعية من شباب مشوا الطريق بنجاح.</p>
-                <a href="journey1.html" class="read-more">اقرأ المزيد</a>
+                <a href="htmlUL/journey1.html" class="read-more">اعرف المزيد</a>
+
             </article>
 
-            <!-- المقال / القصة 2 -->
             <article class="blog-card">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=60"
+                <img src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238?auto=format&fit=crop&w=800&q=80"
                     alt="نظام التعليم الألماني ببساطة">
                 <h3>نظام التعليم الألماني ببساطة</h3>
                 <p>تعرف على أنواع الجامعات، طرق القبول، وكيف تختار التخصص المناسب لك.</p>
-                <a href="journey2.html" class="read-more">اقرأ المزيد</a>
-            </article>
+                <a href="htmlUL/journey2.html" class="read-more">اعرف المزيد</a>
 
-            <!-- المقال / القصة 3 -->
-            <article class="blog-card">
-                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=60"
-                    alt="من الأردن إلى ألمانيا">
-                <h3>من الأردن إلى ألمانيا</h3>
-                <p>قصة حقيقية لطالب أردني شق طريقه من عمان إلى برلين وشارك تجربته معنا.</p>
-                <a href="journey3.html" class="read-more">اقرأ المزيد</a>
             </article>
-
-            <!-- المقال / القصة 4 -->
-            <article class="blog-card">
-                <img src="https://images.unsplash.com/photo-1473186505569-9c61870c11f9?auto=format&fit=crop&w=800&q=60"
-                    alt="الحياة في المدن الألمانية">
-                <h3>الحياة في المدن الألمانية</h3>
-                <p>كيف يوازن الطلاب بين الدراسة والحياة اليومية في برلين، ميونخ، ودوسلدورف.</p>
-                <a href="journey4.html" class="read-more">اقرأ المزيد</a>
-            </article>
-        </div>
-
-        <div class="more-blog">
-            <a href="journey.html" class="see-all">عرض جميع القصص</a>
         </div>
     </section>
 
-
-    <!-- ===== CONTACT SECTION ===== -->
-    <!-- ===== CONTACT SECTION ===== -->
+    <!-- ==================================================== -->
+    <!-- 📬 [07] CONTACT SECTION -->
+    <!-- ==================================================== -->
     <section class="contact" id="contact">
         <h2 data-lang="contactTitle">تواصل معنا</h2>
 
@@ -325,14 +260,12 @@
             <button type="submit" id="send-btn">إرسال</button>
         </form>
 
-        <p id="form-status" style="margin-top:15px; color:#d4af37;"></p>
+        <p id="form-status"></p>
     </section>
 
-
-
-    <!-- ===== Nachrichten ===== -->
-
-
+    <!-- ==================================================== -->
+    <!-- 🧾 [08] NEWS SECTION -->
+    <!-- ==================================================== -->
     <section id="news-section">
         <h2 data-lang="latestNews">آخر الأخبار</h2>
         <div id="news-container">
@@ -340,20 +273,18 @@
         </div>
     </section>
 
-    <!-- ========== -->
-
-
-    <!-- ========== -->
-
-
-    <!-- ===== FOOTER ===== -->
+    <!-- ==================================================== -->
+    <!-- ⚫ [09] FOOTER -->
+    <!-- ==================================================== -->
     <footer>
         <p>© 2025 JoLand — JORDLAND</p>
     </footer>
 
+    <!-- ==================================================== -->
+    <!-- 🧩 [10] SCRIPTS -->
+    <!-- ==================================================== -->
+    <script>lucide.createIcons();</script>
     <script src="js/script.js"></script>
-    <script src="js/lang.js"></script>
-
 </body>
 
 </html>

@@ -1,9 +1,13 @@
-/* ===============================
-   JoLand v2 - Main Stylesheet
+/* ==========================================
+   🎨 JoLand v2 - Main Stylesheet
    Theme: Dark x Gold
    Author: Mohammad Louay
-   =============================== */
+   ========================================== */
 
+
+/* =========================================================
+   🧩 [01] - GLOBAL STYLES & RESET
+   ========================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
 
 * {
@@ -20,7 +24,12 @@ body {
     overflow-x: hidden;
 }
 
-/* ===== HERO SECTION ===== */
+
+/* =========================================================
+   🌍 [02] - HERO SECTION
+   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Tajawal:wght@700;800&display=swap');
+
 .hero {
     position: relative;
     height: 100vh;
@@ -29,12 +38,14 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
+    overflow: hidden;
 }
 
 .hero .overlay {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
 }
 
 .hero-content {
@@ -44,14 +55,25 @@ body {
 }
 
 .hero h1 {
+    font-family: "Cinzel", serif;
     font-size: 4rem;
     color: #d4af37;
     margin-bottom: 0.5em;
+    letter-spacing: 1px;
+}
+
+.hero h1 span {
+    display: block;
+    font-family: "Tajawal", sans-serif;
+    font-size: 3.5rem;
+    color: #ffdf70;
+    margin-top: 10px;
 }
 
 .hero p {
-    font-size: 1.3rem;
-    margin-bottom: 1.5em;
+    font-size: 1.2rem;
+    margin-bottom: 1.2em;
+    color: #fff;
 }
 
 .cta {
@@ -70,7 +92,177 @@ body {
     color: #111;
 }
 
-/* ===== SECTION BASE ===== */
+
+/* =========================================================
+   🗺️ [03] - JOURNEY GRAPHIC & ICONS
+   ========================================================= */
+.journey-graphic {
+    position: relative;
+    width: 100%;
+    max-width: 1600px;
+    aspect-ratio: 16/6;
+    background: transparent;
+    overflow: visible;
+    margin-top: 10px;
+}
+
+.journey-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.node-icon {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: 46px;
+    height: 46px;
+    transform: translate(-50%, -50%);
+    color: #d4af37;
+    background: rgba(212, 175, 55, 0.07);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.node-icon:hover {
+    transform: translate(-50%, -50%) scale(1.15);
+    background: rgba(212, 175, 55, 0.2);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+}
+
+.node-icon::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #d4af37;
+    transform: translateX(-50%);
+    box-shadow: 0 0 6px #d4af37;
+}
+
+
+/* =========================================================
+   🚩 [04] - FLAGS (Jordan & Germany)
+   ========================================================= */
+.flag {
+    position: absolute;
+    font-size: 28px;
+    transform: translate(-50%, -50%);
+    filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.5));
+    transition: transform 0.3s;
+    color: transparent;
+}
+
+.flag:hover {
+    transform: translate(-50%, -50%) scale(1.15);
+}
+
+.flag-jordan {
+    left: 8%;
+    top: 62%;
+}
+
+.flag-germany {
+    left: 93%;
+    top: 46%;
+}
+
+.flag::before,
+.flag::after {
+    content: none !important;
+    display: none !important;
+}
+
+
+/* =========================================================
+   🌐 [05] - LANGUAGE SWITCH
+   ========================================================= */
+#lang-switch {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 6px;
+    z-index: 99;
+}
+
+#lang-switch button {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#lang-switch button:hover {
+    background: #d4af37;
+    color: #000;
+}
+
+
+/* =========================================================
+   💬 [06] - TOOLTIP
+   ========================================================= */
+.node-icon::before,
+.flag::before {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #ffde85;
+    font-size: 13px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+}
+
+.node-icon:hover::before,
+.flag:hover::before {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   🧭 [07] - RESPONSIVE SETTINGS (Hero + Journey)
+   ========================================================= */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero h1 span {
+        font-size: 2.6rem;
+    }
+
+    .node-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    .flag {
+        font-size: 22px;
+    }
+}
+
+
+/* =========================================================
+   📦 [08] - SECTION BASE
+   ========================================================= */
 section {
     padding: 80px 10%;
     text-align: center;
@@ -82,293 +274,187 @@ section h2 {
     margin-bottom: 40px;
 }
 
-/* ===== ABOUT SECTION ===== */
-.about {
-    background: #111;
+
+/* =========================================================
+   🛠️ [09] - SERVICES SECTION
+   ========================================================= */
+.services-section {
+    text-align: center;
+    padding: 60px 20px;
 }
 
-.map-placeholder {
-    background: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
-    padding: 80px 0;
-    border-radius: 12px;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 30px;
+.section-title {
+    color: #d4af37;
+    font-size: 2rem;
+    margin-bottom: 40px;
 }
 
-.about-text {
-    max-width: 700px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-}
-
-/* ===== SERVICES SECTION ===== */
-.services {
-    background: #0e0e0e;
-}
-
-.service-grid {
+.services-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    justify-content: center;
 }
 
 .service-card {
-    background: #1b1b1b;
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    background-color: #0d0d0d;
+    border: 1px solid #2b2b2b;
+    padding: 25px;
     border-radius: 12px;
-    padding: 20px;
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
 
 .service-card:hover {
-    background: #222;
+    border-color: #d4af37;
     transform: translateY(-5px);
     box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
 }
 
-.service-card h3 {
+.icon {
+    width: 42px;
+    height: 42px;
     color: #d4af37;
-    margin-top: 10px;
+    margin: 0 auto 15px;
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.section-subtitle {
-    margin-top: 80px;
-    font-size: 1.5rem;
-    color: #aaa;
+.service-card:hover .icon {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 6px #d4af37);
 }
 
-.future {
-    opacity: 0.7;
-    filter: grayscale(50%);
+.service-card h3 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
 }
 
-.future:hover {
-    opacity: 1;
-    filter: none;
+.service-card p {
+    color: #ccc;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.read-more {
+    color: #d4af37;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.read-more:hover {
+    color: #fff;
 }
 
 
-/* ===== CITIES SECTION ===== */
-.city-grid {
+/* =========================================================
+   🏙️ [10] - CITIES SECTION
+   ========================================================= */
+.cities-section {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.cities-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 25px;
 }
 
 .city-card {
-    background: #1a1a1a;
+    background-color: #0d0d0d;
+    border: 1px solid #2b2b2b;
     border-radius: 12px;
     overflow: hidden;
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    transition: 0.3s;
-}
-
-.city-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+    padding-bottom: 20px;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .city-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+    border-color: #d4af37;
+    transform: translateY(-5px);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
 }
 
-/* ===== UNIVERSITIES SECTION ===== */
-.universities {
-    background: #111;
-}
-
-.tabs {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 25px;
-}
-
-.tab {
-    border: 1px solid #d4af37;
-    background: transparent;
-    color: #d4af37;
-    padding: 8px 20px;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.tab:hover,
-.tab.active {
-    background: #d4af37;
-    color: #111;
-}
-
-.uni-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.uni-card {
-    background: #1a1a1a;
-    border-radius: 12px;
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    padding: 25px;
-}
-
-/* ===== BLOG SECTION ===== */
-.blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-}
-
-.blog-card {
-    background: #1a1a1a;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid rgba(212, 175, 55, 0.2);
-}
-
-.blog-card img {
+.city-card img {
     width: 100%;
     height: 180px;
     object-fit: cover;
 }
 
-.blog-card h3 {
+.city-card h3 {
     color: #d4af37;
-    margin: 15px 0;
+    margin-top: 10px;
+    font-size: 1.2rem;
 }
 
-.blog-card p {
+.city-card p {
+    color: #ccc;
     font-size: 0.95rem;
-    padding: 0 10px;
+    margin: 10px 15px 20px;
 }
 
-.read-btn {
-    margin: 15px 0 20px;
-    padding: 8px 20px;
+/* 🌟 الزر الذهبي داخل بطاقات المدن */
+.city-card .read-more {
+    display: inline-block;
     border: 1px solid #d4af37;
-    background: transparent;
     color: #d4af37;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.read-btn:hover {
-    background: #d4af37;
-    color: #111;
-}
-
-/* ===== CONTACT SECTION ===== */
-.contact {
-    background: #0e0e0e;
-}
-
-.contact form {
-    display: flex;
-    flex-direction: column;
-    max-width: 500px;
-    margin: auto;
-    gap: 15px;
-}
-
-.contact input,
-.contact textarea {
-    padding: 12px;
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    background: transparent;
-    color: #fff;
+    padding: 8px 16px;
     border-radius: 8px;
-}
-
-.contact button {
-    background: #d4af37;
-    color: #111;
-    border: none;
-    padding: 12px;
-    border-radius: 25px;
-    cursor: pointer;
+    text-decoration: none;
     font-weight: 600;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    margin: 0 auto 15px;
+    /* 🔥 أهم سطر — يوسّط الزر ويترك مسافة تحت */
 }
 
-.contact button:hover {
-    background: #b9972d;
-}
-
-/* ===== FOOTER ===== */
-footer {
-    background: #111;
-    color: #999;
-    text-align: center;
-    padding: 20px 0;
-    font-size: 0.9rem;
-    border-top: 1px solid rgba(212, 175, 55, 0.2);
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2.8rem;
-    }
-
-    section {
-        padding: 60px 5%;
-    }
+.city-card .read-more:hover {
+    background: #d4af37;
+    color: #000;
 }
 
 
-/* ===== قسم المقالات ===== */
+/* =========================================================
+   📰 [11] - ARTICLES SECTION
+   ========================================================= */
 .articles-section {
-    padding: 80px 10%;
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
     text-align: center;
-}
-
-.section-title {
-    font-size: 2rem;
-    color: #d4af37;
-    /* ذهبي */
-    margin-bottom: 50px;
+    padding: 60px 20px;
 }
 
 .articles-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    justify-content: center;
 }
 
 .article-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    background-color: #0d0d0d;
+    border: 1px solid #2b2b2b;
+    padding: 25px;
     border-radius: 12px;
-    padding: 20px;
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
 
 .article-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
-}
-
-.article-card img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 15px;
+    border-color: #d4af37;
+    transform: translateY(-5px);
 }
 
 .article-card h3 {
-    color: #d4af37;
-    margin-bottom: 10px;
+    color: #fff;
     font-size: 1.2rem;
+    margin-bottom: 10px;
 }
 
 .article-card p {
-    font-size: 0.95rem;
     color: #ccc;
+    font-size: 0.95rem;
     margin-bottom: 15px;
 }
 
@@ -387,61 +473,59 @@ footer {
     color: #000;
 }
 
-.more-articles {
-    margin-top: 40px;
-}
 
-.see-all {
-    color: #d4af37;
-    border-bottom: 1px solid #d4af37;
-    text-decoration: none;
-    font-size: 1rem;
-}
-
-/* ===== BLOG SECTION ===== */
+/* =========================================================
+   ✈️ [12] - BLOG SECTION
+   ========================================================= */
 .blog-section {
-    padding: 80px 10%;
-    background: rgba(0, 0, 0, 0.7);
-    color: #fff;
     text-align: center;
+    padding: 60px 20px;
 }
 
 .blog-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    justify-content: center;
 }
 
 .blog-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    background-color: #0d0d0d;
+    border: 1px solid #2b2b2b;
     border-radius: 12px;
     padding: 20px;
-    transition: 0.3s;
+    overflow: hidden;
+    transition: all 0.3s ease;
 }
 
 .blog-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
+    border-color: #d4af37;
+    transform: translateY(-5px);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
 }
 
 .blog-card img {
     width: 100%;
+    height: 180px;
+    object-fit: cover;
     border-radius: 10px;
     margin-bottom: 15px;
+    transition: transform 0.4s ease;
+}
+
+.blog-card:hover img {
+    transform: scale(1.05);
 }
 
 .blog-card h3 {
     color: #d4af37;
+    font-size: 1.1rem;
     margin-bottom: 10px;
-    font-size: 1.2rem;
 }
 
 .blog-card p {
-    font-size: 0.95rem;
     color: #ccc;
-    margin-bottom: 15px;
+    font-size: 0.95rem;
 }
 
 .blog-card .read-more {
@@ -459,54 +543,121 @@ footer {
     color: #000;
 }
 
-.more-blog {
-    margin-top: 50px;
-}
 
-.more-blog .see-all {
-    color: #d4af37;
-    text-decoration: none;
-    border-bottom: 1px solid #d4af37;
-    font-size: 1rem;
-}
-
-/* ===== NEWS SECTION ===== */
-
-
-
-
-
-#news-section {
-    padding: 40px;
+/* =========================================================
+   📬 [13] - CONTACT SECTION
+   ========================================================= */
+.contact {
     text-align: center;
-    color: white;
+    padding: 60px 20px;
 }
 
-.news-item {
-    margin-bottom: 20px;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    padding: 15px;
+.contact h2 {
+    color: #d4af37;
+    font-size: 2rem;
+    margin-bottom: 25px;
 }
 
-.news-item h3 {
-    color: #e6b800;
+#contact-form {
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
+#contact-form input,
+#contact-form textarea {
+    padding: 12px;
+    background: #0d0d0d;
+    border: 1px solid #2b2b2b;
+    color: #fff;
+    border-radius: 8px;
+}
 
+#contact-form button {
+    background: transparent;
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    padding: 10px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
+#contact-form button:hover {
+    background: #d4af37;
+    color: #000;
+}
 
 #form-status {
     margin-top: 10px;
-    font-weight: 600;
+    color: #ffdf70;
+}
+
+
+/* =========================================================
+   🧾 [14] - NEWS SECTION
+   ========================================================= */
+#news-section {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+#news-section h2 {
     color: #d4af37;
-    transition: all 0.3s ease;
+    font-size: 2rem;
+    margin-bottom: 25px;
 }
 
-#form-status.error {
-    color: #ff5555;
+
+/* =========================================================
+   ⚫ [15] - FOOTER
+   ========================================================= */
+footer {
+    text-align: center;
+    padding: 25px 0;
+    background-color: #0a0a0a;
+    color: #d4af37;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
 }
 
-#form-status.success {
-    color: #00cc66;
+
+/* =========================================================
+   📱 [16] - RESPONSIVE & MOBILE
+   ========================================================= */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero h1 span {
+        font-size: 2.6rem;
+    }
+
+    .node-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    .flag {
+        font-size: 18px;
+    }
+
+    section {
+        padding: 60px 5%;
+    }
+
+    .service-card,
+    .city-card,
+    .blog-card,
+    .article-card {
+        padding: 20px;
+    }
+
+    #lang-switch {
+        bottom: 15px;
+        right: 15px;
+    }
 }
